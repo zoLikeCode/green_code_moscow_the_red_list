@@ -28,20 +28,19 @@ services:
           cpus: '1.0'
           memory: 1024M
     restart: always
-  clickhouse:
-    image: yandex/clickhouse-server
+  postgres:
+    image: postgres:14
+    environment:
+      POSTGRES_USER: green
+      POSTGRES_PASSWORD: 12345
+      POSTGRES_DB: green_code
     volumes:
-      - clickhouse_data:/var/lib/clickhouse
+      - pg_data:/var/lib/postgresql/data 
     ports:
-      - '8123:8123'
-      - '9000:9000'
+      - '5432:5432'
     deploy:
       resources:
         limits:
           cpus: '1.0'
           memory: 2048M
     restart: always
-
-volumes:
-  rb_front_node_modules:
-  clickhouse_data:
