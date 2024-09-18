@@ -23,6 +23,7 @@
 }
 
 .mainContent li:first-child {
+  cursor: auto;
   margin-bottom: 12px;
 }
 

@@ -47,6 +47,14 @@
   cursor: pointer;
 }
 
+.parksText {
+  width: 114px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  text-align: left;
+}
+
 .buttonTypes {
   margin-left: 6px;
   width: 163px;
@@ -64,6 +72,14 @@
   cursor: pointer;
 }
 
+.typesText {
+  width: 112px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  text-align: left;
+}
+
 .buttonStatus {
   margin-left: 6px;
   padding: 12px 21px;
@@ -79,6 +95,14 @@
   display: flex;
   justify-content: space-between;
   cursor: pointer;
+}
+
+.statusText {
+  width: 114px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  text-align: left;
 }
 
 .buttonCountView {

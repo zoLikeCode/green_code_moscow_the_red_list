@@ -6,6 +6,7 @@ import Layout from './pages/Layout';
 import MainPage from './pages/main/MainPage';
 import Guide from './pages/guide/Guide';
 import Monitoring from './pages/monitoring/Monitoring';
+import Animals from './pages/animals/Animals';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -16,7 +17,8 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<MainPage />} />
           <Route path="/guide" element={<Guide />} />
-          <Route path="/monitoring" elemene={<Monitoring />} />
+          <Route path="/animals" element={<Animals />} />
+          <Route path="/monitoring" element={<Monitoring />} />
           <Route path="/*" element={<Navigate to="/" replace:true />} />
         </Route>
       </Routes>

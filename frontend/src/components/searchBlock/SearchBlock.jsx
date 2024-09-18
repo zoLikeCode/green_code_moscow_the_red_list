@@ -6,6 +6,13 @@ import { PopupAllParks } from '../ui/popupAllParks/PopupAllParks';
 import { PopupTypes } from '../ui/popupTypes/PopupTypes';
 import { PopupStatus } from '../ui/popupStatus/PopupStatus';
 import { PopupCount } from '../ui/popupCount/PopupCount';
+import {
+  useShowCountOnPage,
+  useShowParks,
+  useShowTypes,
+  useShowStatus,
+  useSearchAnimals,
+} from '../../store';
 
 export const SearchBlock = () => {
   const [activeParksPopup, setActiveParksPopup] = useState(false);
@@ -13,10 +20,23 @@ export const SearchBlock = () => {
   const [activeStatusPopup, setActiveStatusPopup] = useState(false);
   const [activeCountPopup, setActiveCountPopup] = useState(false);
 
+  const { parks, setParks } = useShowParks();
+  const { types, setTypes } = useShowTypes();
+  const { status, setStatus } = useShowStatus();
+  const { countShows, setCountShows } = useShowCountOnPage();
+  const { searchAnimals, setSearchAnimals } = useSearchAnimals();
+
+  console.log(searchAnimals);
+
   return (
     <div className={css.mainContainer}>
       <form className={css.inputSearch}>
-        <input placeholder="Животное, парк..." />
+        <input
+          placeholder="Животное, парк..."
+          onChange={(e) => {
+            setSearchAnimals(e.target.value);
+          }}
+        />
         <label>
           <SearchIcon />
         </label>
@@ -27,7 +47,7 @@ export const SearchBlock = () => {
           setActiveParksPopup(!activeParksPopup);
         }}
       >
-        Все парки
+        <span className={css.parksText}>{parks}</span>
         <span>
           <DownArray />
         </span>
@@ -39,7 +59,7 @@ export const SearchBlock = () => {
           setActiveTypesPopup(!activeTypesPopup);
         }}
       >
-        Виды
+        <span className={css.typesText}>{types}</span>
         <span>
           <DownArray />
         </span>
@@ -51,7 +71,7 @@ export const SearchBlock = () => {
           setActiveStatusPopup(!activeStatusPopup);
         }}
       >
-        Статус
+        <span className={css.statusText}>{status}</span>
         <span>
           <DownArray />
         </span>
@@ -63,7 +83,7 @@ export const SearchBlock = () => {
           setActiveCountPopup(!activeCountPopup);
         }}
       >
-        10
+        {countShows}
         <span>
           <DownArray />
         </span>

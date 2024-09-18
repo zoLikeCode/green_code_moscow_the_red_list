@@ -1,8 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import css from './InfoAboutGuide.module.css';
 import { CloseIcon } from '../../../assets/CloseIcon';
 
 export const InfoAboutGuide = () => {
+  const [isRemoved, setIsRemoved] = useState(false);
+
+  useEffect(() => {
+    const isElementRemoved = localStorage.getItem('isElementRemoved') === 'true';
+    setIsRemoved(isElementRemoved);
+  }, []);
+
+  const handleRemove = () => {
+    setIsRemoved(true);
+    localStorage.setItem('isElementRemoved', 'true');
+  };
+
+  if (isRemoved) {
+    return null;
+  }
+
   return (
     <div className={css.mainContainer}>
       <div className={css.ryabchikContainer}>
@@ -15,10 +31,22 @@ export const InfoAboutGuide = () => {
         <p className={css.descText}>
           Воспользуйся сортировкой и поиском, чтобы найти информацию об интересующих видах
         </p>
-        <button className={css.buttonThanks}>Спасибо!</button>
+        <button
+          className={css.buttonThanks}
+          onClick={() => {
+            handleRemove();
+          }}
+        >
+          Спасибо!
+        </button>
         <div className={css.imageLoopHelp} />
       </div>
-      <button className={css.closeIcon}>
+      <button
+        className={css.closeIcon}
+        onClick={() => {
+          handleRemove();
+        }}
+      >
         <CloseIcon />
       </button>
     </div>

@@ -57,6 +57,11 @@
   cursor: pointer;
   outline: transparent;
   border: transparent;
+  transform-origin: 0.2s;
+}
+
+.buttonThanks:hover {
+  scale: 1.01;
 }
 
 .imageLoopHelp {

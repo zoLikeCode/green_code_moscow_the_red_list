@@ -17,7 +17,9 @@ const MainPage = () => {
           старые леса. Но <span>хочу вернуться и помочь сохранить</span> и другие виды животных и
           птиц <span>и восстановить наш родной дом!</span>
         </p>
-        <button className={css.buttonRyabchik}>Я тебе помогу!</button>
+        <button className={css.buttonRyabchik} type="button">
+          Я тебе помогу!
+        </button>
         <div className={css.imageLoop} />
       </div>
     </div>

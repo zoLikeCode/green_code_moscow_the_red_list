@@ -1,0 +1,31 @@
+.mainContainer {
+  margin-top: 12px;
+  margin-bottom: 38px;
+  width: 1132px;
+  height: 592px;
+  display: flex;
+  flex-direction: row;
+  border-radius: 44px;
+  background: rgb(237, 237, 237);
+}
+
+.filtersContainer {
+  width: 328px;
+  height: 592px;
+  padding: 32px;
+}
+
+.mapsContainer {
+  width: 804px;
+  height: 592px;
+  background: rgb(217, 217, 217);
+  border-radius: 0 44px 44px 0;
+}
+
+.allObjectsContainer p {
+  margin-bottom: 18px;
+}
+
+.allObjectsContainer {
+  margin-bottom: 25px;
+}
