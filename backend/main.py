@@ -1,7 +1,7 @@
 from datetime import datetime
 
-from fastapi import FastAPI, Depends, HTTPException, Body
-
+from fastapi import FastAPI, Depends, Body
+from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 
 from sqlalchemy.orm import Session, joinedload
@@ -32,11 +32,21 @@ def get_db():
     finally:
       db.close()
 
+@app.get('/get_photo/')
+async def get_photo(photo):
+   return FileResponse('./photo/' + photo)
+
+@app.get('/get_image/')
+async def get_photo(image):
+   return FileResponse('./image/' + image)
+   
+
 @app.get('/get_applications/')
 async def start(db: Session = Depends(get_db)):
    result = db.query(models.Application).options(joinedload(models.Application.user))\
     .options(joinedload(models.Application.red_list)).all()
    return result
+
 
 @app.post('/create_application/')
 async def create_application(db:Session = Depends(get_db), body = Body(None)):
