@@ -17,9 +17,7 @@ app.add_middleware(
 
 SQLALCHEMY_DATABASE_URL = "postgresql://green:12345@go.itatmisis.ru/green_code"
 
-engine = create_engine(
-    SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}
-)
+engine = create_engine(SQLALCHEMY_DATABASE_URL)
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
