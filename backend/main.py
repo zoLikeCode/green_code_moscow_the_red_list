@@ -26,5 +26,5 @@ db = SessionLocal()
 @app.get('/start')
 async def start():
    query = text('SELECT 1')
-   result = db.execute(query)
+   result = db.execute(query).fetchall()
    return result
