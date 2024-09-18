@@ -23,7 +23,7 @@ engine = create_engine(
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
-db = SessionLocal
+db = SessionLocal()
 
 @app.get('/start')
 async def start():
