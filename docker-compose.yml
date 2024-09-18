@@ -1,0 +1,47 @@
+services:
+  frontend:
+    build: ./frontend
+    volumes:
+      - ./frontend:/app
+      - rb_front_node_modules:/app/node_modules
+    ports:
+      - '80:80'
+    depends_on:
+      - backend
+    environment:
+      - WATCHPACK_POLLING=true
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+    restart: always
+  backend:
+    build: ./backend
+    volumes:
+      - ./backend:/app
+    ports:
+      - '3000:3000'
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 1024M
+    restart: always
+  clickhouse:
+    image: yandex/clickhouse-server
+    volumes:
+      - clickhouse_data:/var/lib/clickhouse
+    ports:
+      - '8123:8123'
+      - '9000:9000'
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 2048M
+    restart: always
+
+volumes:
+  rb_front_node_modules:
+  clickhouse_data:
