@@ -1,0 +1,31 @@
+.mainContainer {
+}
+
+.typeContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  border-radius: 44px 0 11px 0;
+  width: 171px;
+  height: 42px;
+  background: rgb(114, 178, 114);
+}
+
+.typeContainer span {
+  margin-right: 4px;
+}
+
+.image {
+  width: 305px;
+  height: 186px;
+  border-radius: 44px;
+  content: url('./../../../assets/mohtest.png');
+}
+
+.nameType {
+  color: rgb(255, 255, 255);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 16px;
+}
