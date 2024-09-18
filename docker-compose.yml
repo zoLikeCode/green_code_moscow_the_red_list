@@ -44,3 +44,7 @@ services:
           cpus: '1.0'
           memory: 2048M
     restart: always
+    
+volumes:
+  rb_front_node_modules:
+  pg_data:
