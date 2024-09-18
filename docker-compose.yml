@@ -1,21 +1,4 @@
 services:
-  frontend:
-    build: ./frontend
-    volumes:
-      - ./frontend:/app
-      - rb_front_node_modules:/app/node_modules
-    ports:
-      - '80:80'
-    depends_on:
-      - backend
-    environment:
-      - WATCHPACK_POLLING=true
-    deploy:
-      resources:
-        limits:
-          cpus: '0.5'
-          memory: 512M
-    restart: always
   backend:
     build: ./backend
     volumes:
@@ -26,22 +9,24 @@ services:
       resources:
         limits:
           cpus: '1.0'
-          memory: 1024M
+          memory: 4096M
     restart: always
-  clickhouse:
-    image: yandex/clickhouse-server
+  postgres:
+    image: postgres:14
+    environment:
+      POSTGRES_USER: green
+      POSTGRES_PASSWORD: 12345
+      POSTGRES_DB: green_code
     volumes:
-      - clickhouse_data:/var/lib/clickhouse
+      - pg_data:/var/lib/postgresql/data 
     ports:
-      - '8123:8123'
-      - '9000:9000'
+      - '5432:5432'
     deploy:
       resources:
         limits:
           cpus: '1.0'
-          memory: 2048M
+          memory: 6000M
     restart: always
-
+    
 volumes:
-  rb_front_node_modules:
-  clickhouse_data:
+  pg_data:
