@@ -15,17 +15,17 @@ class RedList(Base):
    red_list_id = Column(Integer, primary_key=True)
    red_list_name = Column(String)
    url_image = Column(TEXT)
-   chapter = Column(String),
-   detachment = Column(String),
-   red_order = Column(String),
-   red_family = Column(String),
-   red_status = Column(TEXT),
-   distribution = Column(TEXT),
-   red_size = Column(TEXT),
-   habitat_features = Column(TEXT),
-   limiting_factors = Column(TEXT),
-   red_security = Column(TEXT),
-   state_changes = Column(TEXT),
+   chapter = Column(String)
+   detachment = Column(String)
+   red_order = Column(String)
+   red_family = Column(String)
+   red_status = Column(TEXT)
+   distribution = Column(TEXT)
+   red_size = Column(TEXT)
+   habitat_features = Column(TEXT)
+   limiting_factors = Column(TEXT)
+   red_security = Column(TEXT)
+   state_changes = Column(TEXT)
    events = Column(TEXT)
 
 class Application(Base):
