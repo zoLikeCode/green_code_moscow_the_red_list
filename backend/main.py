@@ -1,9 +1,19 @@
-from fastapi import FastAPI
+from datetime import datetime
+
+from fastapi import FastAPI, Depends, HTTPException, Body
 
 from fastapi.middleware.cors import CORSMiddleware
 
-from sqlalchemy import create_engine, text
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import Session, joinedload
+import models
+from database import SessionLocal, engine
+
+from rosreestr_api.clients.rosreestr import PKKRosreestrAPIClient
+
+api_ppk_client = PKKRosreestrAPIClient()
+
+models.Base.metadata.create_all(engine)
+
 
 app = FastAPI()
 
@@ -15,16 +25,33 @@ app.add_middleware(
     allow_headers=['*'],
 )
 
-SQLALCHEMY_DATABASE_URL = "postgresql://green:12345@go.itatmisis.ru/green_code"
+def get_db():
+    db = SessionLocal()
+    try:
+      yield db
+    finally:
+      db.close()
 
-engine = create_engine(SQLALCHEMY_DATABASE_URL)
-
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-
-db = SessionLocal()
-
-@app.get('/start')
-async def start():
-   query = text('SELECT 1')
-   result = db.execute(query).fetchall()
+@app.get('/get_applications/')
+async def start(db: Session = Depends(get_db)):
+   result = db.query(models.Application).options(joinedload(models.Application.user))\
+    .options(joinedload(models.Application.red_list)).all()
    return result
+
+@app.post('/create_application/')
+async def create_application(db:Session = Depends(get_db), body = Body(None)):
+    get_cadastral = api_ppk_client.get_parcel_by_coordinates(lat = body['lat'], long = body['long'])
+    db_application = models.Application(
+       user_id = body['user_id'],
+       application_date = datetime.now(),
+       red_list_id = body['red_list_id'],
+       url_photo = body['photo'],
+       lat = body['lat'],
+       long = body['long'],
+       cadastral = get_cadastral['features'][0]['attrs']['cn'],
+       status = False
+    )
+    db.add(db_application)
+    db.commit()
+    db.refresh(db_application)
+    return db_application
