@@ -1,0 +1,12 @@
+.search {
+  margin-top: 22px;
+  margin-bottom: 52px;
+}
+
+.animalList {
+  margin-bottom: 8px;
+}
+
+.animalList:last-child {
+  margin-bottom: 0;
+}

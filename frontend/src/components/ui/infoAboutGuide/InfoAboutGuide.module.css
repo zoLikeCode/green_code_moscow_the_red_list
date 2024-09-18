@@ -1,0 +1,84 @@
+.mainContainer {
+  margin-bottom: 13px;
+  width: 1132px;
+  height: 177px;
+  border-radius: 44px;
+  background: rgb(237, 237, 237);
+  display: flex;
+  z-index: -5;
+}
+
+.imageRyabchik {
+  position: relative;
+  content: url('./../../../assets/RyabchikWithRowan.png');
+  bottom: 52px;
+  right: 90px;
+  z-index: 0;
+}
+
+.ryabchikContainer {
+  width: 300px;
+  height: 177px;
+}
+
+.textContainer {
+  width: 699px;
+  height: 137px;
+  margin: 20px 0 20px 26px;
+}
+
+.mainText {
+  width: 629px;
+  color: rgb(0, 0, 0);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.descText {
+  margin-top: 16px;
+  width: 739px;
+  color: rgb(0, 0, 0);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 16px;
+}
+
+.buttonThanks {
+  margin-top: 22px;
+  width: 166px;
+  height: 42px;
+  border-radius: 12px;
+  background: rgb(114, 178, 114);
+  color: rgb(255, 255, 255);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 20px;
+  cursor: pointer;
+  outline: transparent;
+  border: transparent;
+  transform-origin: 0.2s;
+}
+
+.buttonThanks:hover {
+  scale: 1.01;
+}
+
+.imageLoopHelp {
+  position: relative;
+  content: url('./../../../assets/LoopHelpV2.png');
+  z-index: 0;
+  left: 630px;
+  bottom: 200px;
+}
+
+.closeIcon {
+  width: 24px;
+  height: 24px;
+  background-color: transparent;
+  border: transparent;
+  outline: transparent;
+  cursor: pointer;
+  margin-left: 60px;
+  margin-top: 13px;
+}

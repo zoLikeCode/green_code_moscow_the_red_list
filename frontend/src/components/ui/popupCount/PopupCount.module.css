@@ -1,0 +1,33 @@
+.activeContainer {
+  position: absolute;
+  width: 60px;
+  border: 1px solid rgb(240, 240, 242);
+  border-radius: 8px;
+  background: rgb(255, 255, 255);
+  margin-top: 48px;
+  margin-left: 892px;
+}
+
+.noActiveContainer {
+  display: none;
+}
+
+.mainContent {
+  padding: 12px 7px 8px 12px;
+}
+
+.mainContent li {
+  display: flex;
+  justify-content: space-between;
+  list-style-type: none;
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+
+.mainContent li:first-child {
+  margin-bottom: 12px;
+}
+
+.mainContent li:last-child {
+  margin-bottom: 0;
+}

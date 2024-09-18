@@ -1,0 +1,70 @@
+.mainContainer {
+  display: flex;
+  width: 1132px;
+  height: 186px;
+  border-radius: 44px;
+  background: rgb(237, 237, 237);
+  margin-bottom: 8px;
+}
+
+.mainContainer:last-child {
+  margin-bottom: 0;
+}
+
+.mainContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.typeName {
+  margin-top: 20px;
+  margin-left: 34px;
+  width: 760px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.typeNameText {
+  color: rgb(0, 0, 0);
+  font-size: 16px;
+  line-height: 16px;
+}
+
+.systematicsContainer {
+  margin-top: 18px;
+}
+
+.systematics {
+  margin-left: 34px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 14px;
+}
+
+.systematicsLowerText {
+  text-transform: lowercase;
+}
+
+.systematicsCapText {
+  text-transform: capitalize;
+}
+
+.systematicsText {
+  font-weight: 500;
+}
+
+.descText {
+  color: rgb(0, 0, 0);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 14px;
+  width: 761px;
+  margin-top: 19px;
+  margin-left: 34px;
+}
+
+.MoreInfoContainer {
+  margin-left: 34px;
+  margin-top: 12px;
+  display: flex;
+}
