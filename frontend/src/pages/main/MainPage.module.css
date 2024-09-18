@@ -1,0 +1,76 @@
+.mainContainer {
+  width: 1132px;
+  height: 243px;
+  border-radius: 44px;
+  background: rgb(232, 235, 237);
+  margin-top: 38px;
+  display: flex;
+  z-index: -2;
+}
+
+.ryabchikContainer {
+  width: 385px;
+  height: 243px;
+}
+
+.imageRyabchik {
+  position: relative;
+  content: url('./../../assets/Ryabchik.png');
+  bottom: 105px;
+  border-radius: 60px;
+  z-index: -1;
+}
+
+.textContainer {
+  width: 747px;
+}
+
+.mainText {
+  color: rgb(0, 0, 0);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 20px;
+  margin-top: 21px;
+  width: 603px;
+}
+
+.descText {
+  width: 662px;
+  margin-top: 23px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 16px;
+}
+
+.descText span {
+  color: rgb(114, 178, 114);
+}
+
+.imageLoop {
+  left: 516px;
+  bottom: 100px;
+  position: relative;
+  content: url('./../../assets/LoopHelp.png');
+  z-index: -1;
+}
+
+.buttonRyabchik {
+  margin-top: 33px;
+  margin-left: 121px;
+  width: 365px;
+  height: 57px;
+  border-radius: 12px;
+  background: rgb(114, 178, 114);
+  border: transparent;
+  outline: transparent;
+  transition: 0.2s;
+  color: rgb(255, 255, 255);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 20px;
+  z-index: 1;
+}
+
+.buttonRyabchik:hover {
+  scale: 1.01;
+}

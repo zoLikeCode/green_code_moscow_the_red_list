@@ -1,0 +1,59 @@
+.mainContainer {
+  width: 100vw;
+  height: 78px;
+  background-color: rgb(114, 178, 114);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mainContent {
+  width: 1132px;
+  height: 72px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.logoContent {
+  content: url('./../../assets/LogoSite.png');
+}
+
+.routesLogo {
+  display: flex;
+  width: 460px;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 16px;
+}
+
+.entryExitContent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.entryExitText {
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 16px;
+  margin-right: 11px;
+}
+
+.activeLink {
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 16px;
+}
+
+.noActiveLink {
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 16px;
+  text-decoration: none !important;
+}
