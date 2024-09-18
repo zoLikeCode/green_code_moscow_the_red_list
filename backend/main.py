@@ -2,6 +2,9 @@ from fastapi import FastAPI
 
 from fastapi.middleware.cors import CORSMiddleware
 
+from sqlalchemy import create_engine, text
+from sqlalchemy.orm import sessionmaker
+
 app = FastAPI()
 
 app.add_middleware(
@@ -12,6 +15,16 @@ app.add_middleware(
     allow_headers=['*'],
 )
 
+SQLALCHEMY_DATABASE_URL = "postgresql://green:12345@go.itatmisis.ru/green_code"
+
+engine = create_engine(SQLALCHEMY_DATABASE_URL)
+
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+db = SessionLocal()
+
 @app.get('/start')
 async def start():
-   pass
+   query = text('SELECT 1')
+   result = db.execute(query).fetchall()
+   return result
