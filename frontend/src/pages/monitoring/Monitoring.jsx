@@ -16,10 +16,10 @@ const Monitoring = () => {
     <div className={css.mainContainer}>
       <div className={css.navContainer}>
         <div className={css.navContent}>
-          <NavLink to="maps" className={setActive}>
+          <NavLink to='maps' className={setActive}>
             Карта
           </NavLink>
-          <NavLink to="processing" className={setActive}>
+          <NavLink to='processing' className={setActive}>
             Обработка заявок
           </NavLink>
         </div>

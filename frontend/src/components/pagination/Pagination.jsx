@@ -6,11 +6,12 @@ import { getPagesArray } from '../../utils/pages';
 import { RightArrow } from '../../assets/RightArrow';
 import ReactPaginate from 'react-paginate';
 
-export const Pagination = ({ totalCountPages }) => {
+export const Pagination = ({ totalCountPages, nowPage }) => {
   const [currentPage, setCurrentPage] = useState(0);
 
   const handlePageChange = (selectedPage) => {
     setCurrentPage(selectedPage.selected);
+    nowPage(selectedPage.selected);
   };
 
   return (

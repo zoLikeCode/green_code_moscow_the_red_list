@@ -54,3 +54,7 @@
 .historyWatchTerritoryContainer {
   margin-bottom: 50px;
 }
+
+.noActive {
+  display: none;
+}
