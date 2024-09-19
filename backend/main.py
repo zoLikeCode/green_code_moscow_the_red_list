@@ -140,11 +140,11 @@ async def create_application(
    return db_application
 
 #Изменение данных заявки (в соответствии с критериями)
-@app.patch('/applicaction/{id}')
+@app.patch('/application/{id}')
 async def update_name(
    id: int,
    db : Session = Depends(get_db),
-   red_list_name: str = Form(...)
+   red_list_id: int = Form(...)
    ):
 
    item = db.query(models.Application).filter(models.Application.application_id == id).first()
@@ -152,7 +152,10 @@ async def update_name(
    if item is None:
         raise HTTPException(status_code=404, detail="Item not found")
    
-   item.red_list_id = db.query(models.RedList).filter(models.RedList.red_list_name == red_list_name).first()['red_list_id']
+   item.red_list_id = red_list_id
+
+   db.commit()
+   db.refresh(item)
 
    return {'message': 'Изменения сохранены!'}
 
