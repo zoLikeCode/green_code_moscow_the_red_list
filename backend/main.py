@@ -56,6 +56,10 @@ async def get_applications(db: Session = Depends(get_db)):
     .options(joinedload(models.Application.red_list)).all()
    return result
 
+@app.get('/get_red_list/')
+async def get_applications(db: Session = Depends(get_db), skip: int = 0, limit: int = 5):
+   result = db.query(models.RedList).offset(skip).limit(limit).all()
+   return result
 
 
 @app.post('/create_application/')
