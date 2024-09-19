@@ -1,3 +1,5 @@
+#Модели данных
+
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, TIMESTAMP, FLOAT, TEXT
 from sqlalchemy.orm import relationship, deferred
 

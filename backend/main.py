@@ -39,17 +39,17 @@ def get_db():
     finally:
       db.close()
 
-
+#Получение фото, загруженное гражданином
 @app.get('/get_photo/')
 async def get_photo(photo):
    return FileResponse('./photo/' + photo)
 
-
+#Изображения из красной книги
 @app.get('/get_image/')
 async def get_image(image):
    return FileResponse('./image/' + image)
    
-
+#Получение всех заявок
 @app.get('/get_applications/')
 async def get_applications(db: Session = Depends(get_db)):
    result = db.query(models.Application).options(joinedload(models.Application.user))\
@@ -57,6 +57,20 @@ async def get_applications(db: Session = Depends(get_db)):
    
    return result
 
+#Получение подтвержденных заявок
+@app.get('/get_applications_with_true/')
+async def get_applications(db: Session = Depends(get_db)):
+   result = db.query(models.Application).options(joinedload(models.Application.user))\
+    .options(joinedload(models.Application.red_list)).filter(models.Application.status == True).all()
+   
+   count = db.query(models.Application).count()
+   
+   return {
+      'count': count,
+      'array':result
+   }
+
+#Получение спаршенных животных из базы данных
 @app.get('/get_red_list/')
 async def get_red_list(
    db: Session = Depends(get_db),
@@ -69,11 +83,13 @@ async def get_red_list(
       'array': result
    }
 
+#Получение конкретного животного
 @app.get('/get_red_list/{red_list_id}')
 async def get_red_list_by_id(red_list_id: int, db: Session = Depends(get_db)):
    result = db.query(models.RedList).filter(models.RedList.red_list_id == red_list_id).all()
    return result
 
+#Создание заявки, для мобильного приложения
 @app.post('/create_application/')
 async def create_application(
    db:Session = Depends(get_db),
@@ -94,6 +110,7 @@ async def create_application(
       with file_location.open('wb') as buffer:
          shutil.copyfileobj(file.file, buffer)
 
+   #Реализация кадастрового номера по координатам
    get_cadastral = api_ppk_client.get_parcel_by_coordinates(lat = latitude, long = longitude)
 
    db_application = models.Application(
@@ -111,7 +128,7 @@ async def create_application(
    db.refresh(db_application)
    return db_application
 
-
+#Изменение данных заявки (в соответствии с критериями)
 @app.patch('/applicaction/{id}')
 async def update_name(
    id: int,
