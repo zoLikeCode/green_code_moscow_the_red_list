@@ -51,7 +51,7 @@
   align-items: center;
   border: transparent;
   outline: transparent;
-  margin-top: 15px;
+  margin-top: 18px;
   width: 166px;
   height: 42px;
   border-radius: 12px;
@@ -80,9 +80,9 @@
 }
 
 .loopHelpImage {
-  top: 280px;
-  right: 734px;
-  position: absolute;
+  top: 100px;
+  right: 450px;
+  position: relative;
   width: 93px;
   height: 92px;
   content: url('./../../../assets/LoopHeroV3.png');

@@ -6,13 +6,13 @@ export const InfoAboutGuide = () => {
   const [isRemoved, setIsRemoved] = useState(false);
 
   useEffect(() => {
-    const isElementRemoved = localStorage.getItem('isElementRemoved') === 'true';
+    const isElementRemoved = localStorage.getItem('GuideElement') === 'true';
     setIsRemoved(isElementRemoved);
   }, []);
 
   const handleRemove = () => {
     setIsRemoved(true);
-    localStorage.setItem('isElementRemoved', 'true');
+    localStorage.setItem('GuideElement', 'true');
   };
 
   if (isRemoved) {
@@ -35,8 +35,7 @@ export const InfoAboutGuide = () => {
           className={css.buttonThanks}
           onClick={() => {
             handleRemove();
-          }}
-        >
+          }}>
           Спасибо!
         </button>
         <div className={css.imageLoopHelp} />
@@ -45,8 +44,7 @@ export const InfoAboutGuide = () => {
         className={css.closeIcon}
         onClick={() => {
           handleRemove();
-        }}
-      >
+        }}>
         <CloseIcon />
       </button>
     </div>

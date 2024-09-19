@@ -6,13 +6,13 @@ export const InfoAboutMonitoring = () => {
   const [isRemoved, setIsRemoved] = useState(false);
 
   useEffect(() => {
-    const isElementRemoved = localStorage.getItem('isElementRemoved') === 'true';
+    const isElementRemoved = localStorage.getItem('AboutMonitoring') === 'true';
     setIsRemoved(isElementRemoved);
   }, []);
 
   const handleRemove = () => {
     setIsRemoved(true);
-    localStorage.setItem('isElementRemoved', 'true');
+    localStorage.setItem('AboutMonitoring', 'true');
   };
 
   if (isRemoved) {
@@ -34,21 +34,19 @@ export const InfoAboutMonitoring = () => {
         </p>
         <button
           className={css.thanksButton}
-          type="button"
+          type='button'
           onClick={() => {
             handleRemove();
-          }}
-        >
+          }}>
           Спасибо!
         </button>
       </div>
       <button
         className={css.closeIcon}
-        type="button"
+        type='button'
         onClick={() => {
           handleRemove();
-        }}
-      >
+        }}>
         <CloseIcon />
       </button>
       <div className={css.loopHelpImage} />

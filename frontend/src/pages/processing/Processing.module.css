@@ -1,0 +1,56 @@
+.infoPanelContainer {
+  margin-top: 28px;
+}
+
+.infoPanelContainer ul {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 15px;
+}
+
+.mainText {
+  color: rgb(143, 143, 143);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 16px;
+}
+
+.infoPanelContainer li {
+  color: rgb(143, 143, 143);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 16px;
+}
+
+.newReqText {
+  margin-left: 15px;
+}
+
+.dateText {
+  margin-left: 28px;
+}
+
+.animalsText {
+  margin-left: 117px;
+}
+
+.authorText {
+  margin-left: 110px;
+}
+
+.reviewReq {
+  margin-top: 30px;
+}
+
+.reqText span {
+  margin-left: 13px;
+}
+
+.reqText {
+  color: rgb(143, 143, 143);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 16px;
+  cursor: pointer;
+  margin-bottom: 17px;
+}
