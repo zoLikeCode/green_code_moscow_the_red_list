@@ -1,8 +1,11 @@
 from datetime import datetime
 
-from fastapi import FastAPI, Depends, Body, File, UploadFile, Form
+
 import shutil
 from pathlib import Path
+import uuid
+
+from fastapi import FastAPI, Depends, Body, File, UploadFile, Form
 from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -54,15 +57,6 @@ async def get_applications(db: Session = Depends(get_db)):
    return result
 
 
-@app.post('/save/')
-async def save(file: UploadFile = File(...), name: str = Form(...)):
-   file_location = UPLOAD_DIR / file.filename
-
-   with file_location.open('wb') as buffer:
-      shutil.copyfileobj(file.file, buffer)
-   
-   return {'message': file.filename, 'name': name}
-
 
 @app.post('/create_application/')
 async def create_application(
@@ -74,7 +68,9 @@ async def create_application(
    long: float = Form(...)
    ):
 
-   file_location = UPLOAD_DIR / file.filename
+   new_filename = f'{uuid.uuid4()}_{Path(file.filename)}'
+
+   file_location = UPLOAD_DIR / new_filename
 
    with file_location.open('wb') as buffer:
       shutil.copyfileobj(file.file, buffer)
@@ -85,7 +81,7 @@ async def create_application(
       user_id = user_id,
       application_date = datetime.now(),
       red_list_id = red_list_id,
-      url_photo = file.filename,
+      url_photo = new_filename,
       lat = lat,
       long = long,
       cadastral = get_cadastral['features'][0]['attrs']['cn'],
