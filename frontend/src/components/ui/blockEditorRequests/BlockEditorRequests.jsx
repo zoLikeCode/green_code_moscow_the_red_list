@@ -5,7 +5,7 @@ import { PaperClipIcon } from '../../../assets/PaperClipIcon';
 import { CancelIcon } from '../../../assets/CancelIcon';
 import { AcceptIcon } from '../../../assets/AcceptIcon';
 import { YesIcon } from '../../../assets/YesIcon';
-import { UpdateRequests } from '../../../services/ApplicationsAPI';
+import { UpdateAnimals, UpdateRequests } from '../../../services/ApplicationsAPI';
 import { PopupShowMaps } from '../popupShowMaps/PopupShowMaps';
 
 export const BlockEditorRequests = ({
@@ -85,7 +85,7 @@ export const BlockEditorRequests = ({
           className={css.editorButton}
           type='button'
           onClick={() => {
-            UpdateRequests(redListID, { 'red_list.red_list_name': editNameAnimal });
+            UpdateAnimals(editNameAnimal);
             window.location.reload();
           }}>
           Сохранить и принять заявку

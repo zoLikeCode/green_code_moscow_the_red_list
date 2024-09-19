@@ -26,13 +26,11 @@ export const SearchBlock = () => {
   const { countShows, setCountShows } = useShowCountOnPage();
   const { searchAnimals, setSearchAnimals } = useSearchAnimals();
 
-  console.log(searchAnimals);
-
   return (
     <div className={css.mainContainer}>
       <form className={css.inputSearch}>
         <input
-          placeholder="Животное, парк..."
+          placeholder='Животное, парк...'
           onChange={(e) => {
             setSearchAnimals(e.target.value);
           }}
@@ -45,8 +43,7 @@ export const SearchBlock = () => {
         className={css.buttonParks}
         onClick={() => {
           setActiveParksPopup(!activeParksPopup);
-        }}
-      >
+        }}>
         <span className={css.parksText}>{parks}</span>
         <span>
           <DownArray />
@@ -57,8 +54,7 @@ export const SearchBlock = () => {
         className={css.buttonTypes}
         onClick={() => {
           setActiveTypesPopup(!activeTypesPopup);
-        }}
-      >
+        }}>
         <span className={css.typesText}>{types}</span>
         <span>
           <DownArray />
@@ -69,8 +65,7 @@ export const SearchBlock = () => {
         className={css.buttonStatus}
         onClick={() => {
           setActiveStatusPopup(!activeStatusPopup);
-        }}
-      >
+        }}>
         <span className={css.statusText}>{status}</span>
         <span>
           <DownArray />
@@ -81,8 +76,7 @@ export const SearchBlock = () => {
         className={css.buttonCountView}
         onClick={() => {
           setActiveCountPopup(!activeCountPopup);
-        }}
-      >
+        }}>
         {countShows}
         <span>
           <DownArray />

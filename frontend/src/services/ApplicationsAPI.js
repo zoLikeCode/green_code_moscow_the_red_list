@@ -38,3 +38,27 @@ export const UpdateRequests = async (id, db) => {
     console.error(error);
   }
 };
+
+export const UpdateAnimals = async (animal) => {
+  let data = new FormData();
+  data.append('red_list_name', `${animal}`);
+
+  let config = {
+    method: 'patch',
+    maxBodyLength: Infinity,
+    url: 'http://go.itatmisis.ru:3000/application/1',
+    headers: {
+      ...data.getHeaders(),
+    },
+    data: data,
+  };
+
+  axios
+    .request(config)
+    .then((response) => {
+      console.log(JSON.stringify(response.data));
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};

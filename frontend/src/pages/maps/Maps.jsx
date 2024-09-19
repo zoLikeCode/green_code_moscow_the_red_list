@@ -36,8 +36,6 @@ const Maps = () => {
     setLiveAnimals(response.array);
   };
 
-  console.log(liveAnimals);
-
   return (
     <div>
       <InfoAboutMonitoring />

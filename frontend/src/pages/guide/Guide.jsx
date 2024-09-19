@@ -27,7 +27,6 @@ const Guide = () => {
 
   const LoadingAnimals = async (page, limit) => {
     const response = await LoadAnimals(page, limit);
-    console.log(response.data.array);
     setInfoAnimals(response.data.array);
     setCountPage(response.data.count);
     setIsLoading(false);

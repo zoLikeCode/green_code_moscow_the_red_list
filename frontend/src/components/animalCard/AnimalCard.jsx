@@ -15,7 +15,6 @@ export const AnimalCard = ({
   idImage,
   infoArr,
 }) => {
-  console.log(infoArr);
   return (
     <div className={css.mainContainer}>
       <ImageAnimals name={types} stImage={idImage} />
