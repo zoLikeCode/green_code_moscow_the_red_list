@@ -3,7 +3,7 @@ import css from './Maps.module.css';
 import { InfoAboutMonitoring } from '../../components/ui/infoAboutMonitoring/InfoAboutMonitoring';
 import { SearchIcon } from '../../assets/SearchIcon';
 import { MapWithFilters } from '../../components/mapWithFilters/MapWithFilters';
-import { AnimalCard } from '../../components/animalCard/animalCard';
+import { AnimalCard } from '../../components/animalCard/AnimalCard';
 import { Pagination } from '../../components/pagination/Pagination';
 import { DownArray } from '../../assets/DownArray';
 import { BlockHistoryWatch } from '../../components/ui/blockHistoryWatch/BlockHistoryWatch';
