@@ -28,7 +28,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=['*'],
     allow_credentials=True,
-    allow_methods=['GET, POST, OPTIONS'],
+    allow_methods=['GET', 'POST', 'OPTIONS'],  
     allow_headers=['*'],
 )
 
@@ -59,9 +59,13 @@ async def get_applications(db: Session = Depends(get_db)):
 
 #Получение подтвержденных заявок
 @app.get('/get_applications_with_true/')
-async def get_applications(db: Session = Depends(get_db)):
+async def get_applications(
+   db: Session = Depends(get_db),
+   skip: int = 0,
+   limit: int = 5
+   ):
    result = db.query(models.Application).options(joinedload(models.Application.user))\
-    .options(joinedload(models.Application.red_list)).filter(models.Application.status == True).all()
+    .options(joinedload(models.Application.red_list)).filter(models.Application.status == True).offset(skip).limit(limit).all()
    
    count = db.query(models.Application).count()
    
@@ -70,7 +74,7 @@ async def get_applications(db: Session = Depends(get_db)):
       'array':result
    }
 
-#Получение спаршенных животных из базы данных
+#Получение животных из базы данных
 @app.get('/get_red_list/')
 async def get_red_list(
    db: Session = Depends(get_db),
