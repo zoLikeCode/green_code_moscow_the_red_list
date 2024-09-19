@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { SearchBlock } from '../../components/searchBlock/searchBlock';
+import { SearchBlock } from '../../components/searchBlock/SearchBlock';
 import css from './Guide.module.css';
 import { InfoAboutGuide } from '../../components/ui/infoAboutGuide/InfoAboutGuide';
 import { AnimalCard } from '../../components/animalCard/AnimalCard';
