@@ -8,7 +8,15 @@ import { YesIcon } from '../../../assets/YesIcon';
 import { UpdateRequests } from '../../../services/ApplicationsAPI';
 import { PopupShowMaps } from '../popupShowMaps/PopupShowMaps';
 
-export const BlockEditorRequests = ({ active, numberRequests, date, animals, author, coord }) => {
+export const BlockEditorRequests = ({
+  active,
+  numberRequests,
+  redListID,
+  date,
+  animals,
+  author,
+  coord,
+}) => {
   const [activeEditorMenu, setActiveEditorMenu] = useState(false);
   const [editNameAnimal, setEditNameAnimal] = useState(animals);
   const [activePopupMaps, setActivePopupMaps] = useState(false);
@@ -41,7 +49,7 @@ export const BlockEditorRequests = ({ active, numberRequests, date, animals, aut
         <li
           className={css.cancelIcon}
           onClick={() => {
-            UpdateRequests(numberRequests, { active: false });
+            UpdateRequests(numberRequests, { status: false });
             window.location.reload();
           }}>
           <CancelIcon />
@@ -49,7 +57,7 @@ export const BlockEditorRequests = ({ active, numberRequests, date, animals, aut
         <li
           className={css.yesIcon}
           onClick={() => {
-            UpdateRequests(numberRequests, { active: false });
+            UpdateRequests(numberRequests, { status: false });
             window.location.reload();
           }}>
           <YesIcon />
@@ -57,7 +65,7 @@ export const BlockEditorRequests = ({ active, numberRequests, date, animals, aut
         <li
           className={css.acceptIcon}
           onClick={() => {
-            active && setActiveEditorMenu(!activeEditorMenu);
+            !active && setActiveEditorMenu(!activeEditorMenu);
           }}>
           <AcceptIcon />
         </li>
@@ -77,7 +85,7 @@ export const BlockEditorRequests = ({ active, numberRequests, date, animals, aut
           className={css.editorButton}
           type='button'
           onClick={() => {
-            UpdateRequests(numberRequests, { animals: editNameAnimal });
+            UpdateRequests(redListID, { 'red_list.red_list_name': editNameAnimal });
             window.location.reload();
           }}>
           Сохранить и принять заявку

@@ -2,6 +2,7 @@ import React from 'react';
 import css from './AnimalCard.module.css';
 import { ImageAnimals } from '../ui/imageAnimals/ImageAnimals';
 import { MoreInfoBlock } from '../ui/moreInfoBlock/MoreInfoBlock';
+import { Navigate } from 'react-router-dom';
 
 export const AnimalCard = ({
   types,

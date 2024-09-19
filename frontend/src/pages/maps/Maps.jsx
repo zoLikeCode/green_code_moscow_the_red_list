@@ -103,15 +103,10 @@ const Maps = () => {
         <div>
           {activeWatchHistory && (
             <div>
-              <BlockHistoryWatch />
-              <BlockHistoryWatch />
-              <BlockHistoryWatch />
-              <BlockHistoryWatch />
-              <BlockHistoryWatch />
+              <BlockHistoryWatch count='1' date='19.08.24' CadNumber='50:20:0010112:882' />
             </div>
           )}
         </div>
-        <Pagination />
       </div>
     </div>
   );

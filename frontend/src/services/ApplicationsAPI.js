@@ -33,7 +33,7 @@ export const LoadAnimalsOnTerritory = async (page) => {
 
 export const UpdateRequests = async (id, db) => {
   try {
-    const response = await axios.patch(`http://localhost:3000/requests/${id}`, db);
+    const response = await axios.patch(`http://go.itatmisis.ru:3000/application/${id}`, db);
   } catch (error) {
     console.error(error);
   }
