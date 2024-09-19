@@ -5,7 +5,7 @@ import shutil
 from pathlib import Path
 import uuid
 
-from fastapi import FastAPI, Depends, Body, File, UploadFile, Form
+from fastapi import FastAPI, Depends, File, UploadFile, Form, HTTPException
 from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -54,12 +54,20 @@ async def get_image(image):
 async def get_applications(db: Session = Depends(get_db)):
    result = db.query(models.Application).options(joinedload(models.Application.user))\
     .options(joinedload(models.Application.red_list)).all()
+   
    return result
 
 @app.get('/get_red_list/')
-async def get_red_list(db: Session = Depends(get_db), skip: int = 0, limit: int = 5):
+async def get_red_list(
+   db: Session = Depends(get_db),
+   skip: int = 0,
+   limit: int = 5
+   ):
    result = db.query(models.RedList).offset(skip).limit(limit).all()
-   return result
+   return {
+      'count': db.query(models.RedList).count(),
+      'array': result
+   }
 
 @app.get('/get_red_list/{red_list_id}')
 async def get_red_list_by_id(red_list_id: int, db: Session = Depends(get_db)):
@@ -69,29 +77,32 @@ async def get_red_list_by_id(red_list_id: int, db: Session = Depends(get_db)):
 @app.post('/create_application/')
 async def create_application(
    db:Session = Depends(get_db),
-   file: UploadFile = File(...),
+   file: UploadFile = File(None),
    user_id: int = Form(...),
    red_list_id: int = Form(...),
-   lat: float = Form(...),
-   long: float = Form(...)
+   latitude: float = Form(...),
+   longitude: float = Form(...)
    ):
 
-   new_filename = f'{uuid.uuid4()}_{Path(file.filename)}'
+   if file is None:
+      new_filename = ''
+   else:
+      new_filename = f'{uuid.uuid4()}_{Path(file.filename)}'
 
-   file_location = UPLOAD_DIR / new_filename
+      file_location = UPLOAD_DIR / new_filename
 
-   with file_location.open('wb') as buffer:
-      shutil.copyfileobj(file.file, buffer)
+      with file_location.open('wb') as buffer:
+         shutil.copyfileobj(file.file, buffer)
 
-   get_cadastral = api_ppk_client.get_parcel_by_coordinates(lat = lat, long = long)
+   get_cadastral = api_ppk_client.get_parcel_by_coordinates(lat = latitude, long = longitude)
 
    db_application = models.Application(
       user_id = user_id,
       application_date = datetime.now(),
       red_list_id = red_list_id,
       url_photo = new_filename,
-      lat = lat,
-      long = long,
+      lat = latitude,
+      long = longitude,
       cadastral = get_cadastral['features'][0]['attrs']['cn'],
       status = False
      )
@@ -99,3 +110,21 @@ async def create_application(
    db.commit()
    db.refresh(db_application)
    return db_application
+
+
+@app.patch('/applicaction/{id}')
+async def update_name(
+   id: int,
+   db : Session = Depends(get_db),
+   red_list_name: str = Form(...)
+   ):
+
+   item = db.query(models.Application).filter(models.Application.application_id == id).first()
+
+   if item is None:
+        raise HTTPException(status_code=404, detail="Item not found")
+   
+   item.red_list_id = db.query(models.RedList).filter(models.RedList.red_list_name == red_list_name).first()['red_list_id']
+
+   return {'message': 'Изменения сохранены!'}
+
