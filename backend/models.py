@@ -14,6 +14,7 @@ class RedList(Base):
 
    red_list_id = Column(Integer, primary_key=True)
    red_list_name = Column(String)
+   red_list_name_lat = Column(String)
    url_image = Column(TEXT)
    chapter = Column(String)
    detachment = Column(String)
