@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import css from './Maps.module.css';
-import { InfoAboutMonitoring } from '../../components/ui/infoAboutMonitoring/infoAboutMonitoring';
+import { InfoAboutMonitoring } from '../../components/ui/infoAboutMonitoring/InfoAboutMonitoring';
 import { SearchIcon } from '../../assets/SearchIcon';
 import { MapWithFilters } from '../../components/mapWithFilters/MapWithFilters';
 import { AnimalCard } from '../../components/animalCard/animalCard';

@@ -28,12 +28,12 @@ export const AnimalCard = ({
         </div>
         <div className={css.systematicsContainer}>
           <p className={css.systematics}>
-            {order.length === 0 ? (
+            {order.length !== 0 ? (
               <span className={css.systematicsText}>Порядок: </span>
             ) : (
               <span className={css.systematicsText}>Отряд: </span>
             )}
-            {order.length === 0 ? (
+            {order.length !== 0 ? (
               <span className={css.systematicsLowerText}>{detachment} </span>
             ) : (
               <span className={css.systematicsLowerText}>{order} </span>
