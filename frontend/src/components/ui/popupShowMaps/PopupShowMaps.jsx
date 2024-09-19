@@ -9,7 +9,7 @@ export const PopupShowMaps = ({ active, setActive, coords }) => {
       <div className={css.mainContent}>
         <YMaps>
           <Map
-            defaultState={{ center: [55.78177, 37.425662], zoom: 13, controls: [] }}
+            defaultState={{ center: [55.78177, 37.425662], zoom: 12, controls: [] }}
             width='804px'
             height='592px'>
             <ZoomControl options={{ float: 'right' }} />

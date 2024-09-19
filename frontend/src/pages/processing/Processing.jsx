@@ -41,6 +41,7 @@ const Processing = () => {
               return (
                 <BlockEditorRequests
                   active={req.active}
+                  redListID={req.red_list.red_list_id}
                   numberRequests={req.application_id}
                   date={req.application_date.slice(0, 10)}
                   animals={
