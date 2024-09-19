@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import css from './Monitoring.module.css';
 import { NavLink, Outlet } from 'react-router-dom';
-import { InfoAboutMonitoring } from '../../components/ui/infoAboutMonitoring/infoAboutMonitoring';
+import { InfoAboutMonitoring } from '../../components/ui/infoAboutMonitoring/InfoAboutMonitoring';
 import { SearchIcon } from '../../assets/SearchIcon';
 import { MapWithFilters } from '../../components/mapWithFilters/MapWithFilters';
-import { AnimalCard } from '../../components/animalCard/animalCard';
+import { AnimalCard } from '../../components/animalCard/AnimalCard';
 import { Pagination } from '../../components/pagination/Pagination';
 import { DownArray } from '../../assets/DownArray';
 import { BlockHistoryWatch } from '../../components/ui/blockHistoryWatch/BlockHistoryWatch';

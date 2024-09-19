@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { SearchBlock } from '../../components/searchBlock/searchBlock';
 import css from './Guide.module.css';
 import { InfoAboutGuide } from '../../components/ui/infoAboutGuide/InfoAboutGuide';
-import { AnimalCard } from '../../components/animalCard/animalCard';
+import { AnimalCard } from '../../components/animalCard/AnimalCard';
 import { Pagination } from '../../components/pagination/Pagination';
 import { useSearchAnimals } from '../../store';
 import { useShowCountOnPage } from '../../store';
