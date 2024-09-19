@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { SearchBlock } from '../../components/searchBlock/searchBlock';
+import { SearchBlock } from '../../components/searchBlock/SearchBlock';
 import css from './Guide.module.css';
 import { InfoAboutGuide } from '../../components/ui/infoAboutGuide/InfoAboutGuide';
-import { AnimalCard } from '../../components/animalCard/animalCard';
+import { AnimalCard } from '../../components/animalCard/AnimalCard';
 import { Pagination } from '../../components/pagination/Pagination';
 import { useSearchAnimals } from '../../store';
 import { useShowCountOnPage } from '../../store';
 import { LoadAnimals } from '../../services/AnimalsAPI';
 import { Link } from 'react-router-dom';
 import { Loader } from './../../components/ui/loader/Loader';
+import { getPageCount } from '../../utils/pages';
 
 const Guide = () => {
   const [infoAnimals, setInfoAnimals] = useState([]);
@@ -17,13 +18,18 @@ const Guide = () => {
   const { searchAnimals, setSearchAnimals } = useSearchAnimals();
   const { countShows, setCountShows } = useShowCountOnPage();
 
+  const [countPage, setCountPage] = useState(0);
+  const [nowPage, setNowPage] = useState(0);
+
   useEffect(() => {
-    LoadingAnimals(1, countShows);
-  }, [countShows]);
+    LoadingAnimals(nowPage, countShows);
+  }, [countShows, nowPage]);
 
   const LoadingAnimals = async (page, limit) => {
     const response = await LoadAnimals(page, limit);
-    setInfoAnimals(response.data);
+    console.log(response.data.array);
+    setInfoAnimals(response.data.array);
+    setCountPage(response.data.count);
     setIsLoading(false);
   };
 
@@ -35,12 +41,12 @@ const Guide = () => {
       <InfoAboutGuide />
       {isLoading && <Loader />}
       {infoAnimals
-        .filter((animal) => {
-          return (
-            searchAnimals.trim() === '' ||
-            animal.typeNameRU.toLowerCase().includes(searchAnimals.toLowerCase())
-          );
-        })
+        // .filter((animal) => {
+        //   return (
+        //     searchAnimals.trim() === '' ||
+        //     animal.nameOnRus.toLowerCase().includes(searchAnimals?.toLowerCase())
+        //   );
+        // })
         .map((anim, index) => {
           return (
             <div key={index} className={css.animalList}>
@@ -58,7 +64,12 @@ const Guide = () => {
             </div>
           );
         })}
-      <Pagination />
+      <Pagination
+        totalCountPages={getPageCount(countPage, countShows)}
+        nowPage={(page) => {
+          setNowPage(page);
+        }}
+      />
     </div>
   );
 };

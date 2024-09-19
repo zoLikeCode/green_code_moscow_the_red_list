@@ -61,7 +61,7 @@ const Processing = () => {
           onClick={() => {
             setReviewRequeest(!reviewRequest);
           }}>
-          Рассмотренные заявки{' '}
+          Рассмотренные заявки
           <span>
             <DownArray />
           </span>

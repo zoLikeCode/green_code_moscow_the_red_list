@@ -1,7 +1,7 @@
 import React from 'react';
 import css from './AnimalCard.module.css';
-import { ImageAnimals } from '../ui/ImageAnimals/ImageAnimals';
-import { MoreInfoBlock } from '../ui/MoreInfoBlock/MoreInfoBlock';
+import { ImageAnimals } from '../ui/imageAnimals/ImageAnimals';
+import { MoreInfoBlock } from '../ui/moreInfoBlock/MoreInfoBlock';
 
 export const AnimalCard = ({
   types,
@@ -28,12 +28,12 @@ export const AnimalCard = ({
         </div>
         <div className={css.systematicsContainer}>
           <p className={css.systematics}>
-            {order.length === 0 ? (
+            {order.length !== 0 ? (
               <span className={css.systematicsText}>Порядок: </span>
             ) : (
               <span className={css.systematicsText}>Отряд: </span>
             )}
-            {order.length === 0 ? (
+            {order.length !== 0 ? (
               <span className={css.systematicsLowerText}>{detachment} </span>
             ) : (
               <span className={css.systematicsLowerText}>{order} </span>

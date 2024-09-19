@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import css from './MapWithFilters.module.css';
-import { YMaps, Map, ZoomControl, Polygon } from '@pbe/react-yandex-maps';
+import { YMaps, Map, ZoomControl, Polygon, Placemark } from '@pbe/react-yandex-maps';
 import { CheckWithText } from '../ui/checkWithText/CheckWithText';
-import { all } from 'axios';
 
-export const MapWithFilters = () => {
+export const MapWithFilters = ({ types }) => {
   const [parentResult, setParentResult] = useState(false);
 
   return (
@@ -57,28 +56,27 @@ export const MapWithFilters = () => {
         </div>
       </div>
       <div className={css.mapsContainer}>
-        <YMaps>
+        <YMaps
+          query={{
+            ns: 'use-load-option',
+            load: 'Map,Placemark,control.ZoomControl,control.FullscreenControl,geoObject.addon.balloon',
+          }}>
           <Map
-            defaultState={{ center: [55.78177, 37.425662], zoom: 14, controls: [] }}
+            defaultState={{ center: [55.78177, 37.425662], zoom: 12, controls: [] }}
             width='804px'
             height='592px'>
             <ZoomControl options={{ float: 'right' }} />
-            <Polygon
-              geometry={[
-                [
-                  [55.784519, 37.439889],
-                  [55.785171, 37.431146],
-                  [55.783992, 37.419938],
-                ],
-              ]}
-              options={{
-                fillColor: '#00FF00',
-                strokeColor: '#0000FF',
-                opacity: 0.5,
-                strokeWidth: 5,
-                strokeStyle: 'shortdash',
-              }}
-            />
+            {types.map((type) => {
+              return (
+                <Placemark
+                  geometry={[type.lat, type.long]}
+                  properties={{
+                    balloonContentBody: `Животное - ${type.red_list.red_list_name.slice(0, 1).toUpperCase() + type.red_list.red_list_name.slice(1, type.red_list.red_list_name.length).toLowerCase()}. 
+                    Кадастровый номер - ${type.cadastral}`,
+                  }}
+                />
+              );
+            })}
           </Map>
         </YMaps>
       </div>

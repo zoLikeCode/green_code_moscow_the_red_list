@@ -1,47 +1,42 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import css from './Maps.module.css';
-import { InfoAboutMonitoring } from '../../components/ui/infoAboutMonitoring/infoAboutMonitoring';
+import { InfoAboutMonitoring } from '../../components/ui/infoAboutMonitoring/InfoAboutMonitoring';
 import { SearchIcon } from '../../assets/SearchIcon';
 import { MapWithFilters } from '../../components/mapWithFilters/MapWithFilters';
-import { AnimalCard } from '../../components/animalCard/animalCard';
+import { AnimalCard } from '../../components/animalCard/AnimalCard';
 import { Pagination } from '../../components/pagination/Pagination';
 import { DownArray } from '../../assets/DownArray';
 import { BlockHistoryWatch } from '../../components/ui/blockHistoryWatch/BlockHistoryWatch';
+import { LoadAnimalsOnTerritory, LoadOnlyTrueRequests } from '../../services/ApplicationsAPI';
+import { getPageCount } from '../../utils/pages';
 
 const Maps = () => {
   const [activeRegionalAnimals, setActiveRegionalAnimals] = useState(false);
   const [activeWatchHistory, setActiveWatchHistory] = useState(false);
 
-  const [typeAnimal, setTypeAnimal] = useState([
-    {
-      id: 1,
-      nameOnRus: 'Аааааа',
-    },
-    {
-      id: 2,
-      nameOnRus: 'Ббббб',
-    },
-    {
-      id: 3,
-      nameOnRus: 'Ввввв',
-    },
-    {
-      id: 4,
-      nameOnRus: 'Ггггг',
-    },
-    {
-      id: 5,
-      nameOnRus: 'Ддддд',
-    },
-    {
-      id: 6,
-      nameOnRus: 'Жжжжжж',
-    },
-    {
-      id: 7,
-      nameOnRus: 'Ииииии',
-    },
-  ]);
+  const [typeAnimal, setTypeAnimal] = useState([]);
+  const [liveAnimals, setLiveAnimals] = useState([]);
+
+  const [countAnimals, setCountAnimals] = useState(0);
+  const [nowPage, setNowPage] = useState(0);
+
+  useEffect(() => {
+    LoadingAnimals();
+    LoadingAnimalsPagination(1);
+  }, []);
+
+  const LoadingAnimals = async () => {
+    const response = await LoadOnlyTrueRequests();
+    setCountAnimals(response.count);
+    setTypeAnimal(response.array);
+  };
+
+  const LoadingAnimalsPagination = async (page) => {
+    const response = await LoadAnimalsOnTerritory(page);
+    setLiveAnimals(response.array);
+  };
+
+  console.log(liveAnimals);
 
   return (
     <div>
@@ -54,7 +49,7 @@ const Maps = () => {
           </label>
         </form>
       </div>
-      <MapWithFilters />
+      <MapWithFilters types={typeAnimal} />
       <div className={css.typesOnThisRegionContainer}>
         <p
           className={css.typeText}
@@ -62,17 +57,35 @@ const Maps = () => {
             setActiveRegionalAnimals(!activeRegionalAnimals);
             setActiveWatchHistory(false);
           }}>
-          Виды, обитающие на этом участке{' '}
+          Виды, обитающие на этом участке
           <span>
             <DownArray />
           </span>
         </p>
-        <div>
+        <div className={!activeRegionalAnimals && css.noActive}>
           {activeRegionalAnimals &&
-            typeAnimal.map((animal) => {
-              return <AnimalCard nameOnRus={animal.nameOnRus} />;
+            liveAnimals.map((anim) => {
+              return (
+                <AnimalCard
+                  types={anim.red_list.chapter}
+                  nameOnRus={anim.red_list.red_list_name}
+                  nameOnLat={anim.red_list.red_list_name_lat}
+                  family={anim.red_list.red_family}
+                  order={anim.red_list.red_order}
+                  detachment={anim.red_list.detachment}
+                  desc={anim.red_list.distribution}
+                  idImage={`http://go.itatmisis.ru:3000/get_image/?image=${anim.red_list.url_image.toLowerCase()}`}
+                  infoArr={[anim.red_list.red_family, anim.red_list.red_status.slice(0, 20)]}
+                />
+              );
             })}
-          <Pagination />
+
+          <Pagination
+            totalCountPages={getPageCount(countAnimals, 4)}
+            nowPage={(page) => {
+              setNowPage(page);
+            }}
+          />
         </div>
       </div>
       <div className={css.historyWatchTerritoryContainer}>
@@ -82,7 +95,7 @@ const Maps = () => {
             setActiveWatchHistory(!activeWatchHistory);
             setActiveRegionalAnimals(false);
           }}>
-          История просмотренных участков{' '}
+          История просмотренных участков
           <span>
             <DownArray />
           </span>
