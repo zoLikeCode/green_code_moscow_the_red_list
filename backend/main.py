@@ -144,7 +144,7 @@ async def create_application(
 async def update_name(
    id: int,
    db : Session = Depends(get_db),
-   red_list_id: int = Form(...)
+   red_list_name: str = Form(...)
    ):
 
    item = db.query(models.Application).filter(models.Application.application_id == id).first()
@@ -152,10 +152,12 @@ async def update_name(
    if item is None:
         raise HTTPException(status_code=404, detail="Item not found")
    
-   item.red_list_id = red_list_id
+   red = db.query(models.RedList).filter(models.RedList.red_list_id == item.red_list_id).first()
 
+   red.red_list_name = red_list_name
+   red.red_list_name_lat = ''
    db.commit()
-   db.refresh(item)
+   db.refresh(red)
 
    return {'message': 'Изменения сохранены!'}
 
