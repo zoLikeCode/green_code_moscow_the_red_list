@@ -46,7 +46,7 @@ async def get_photo(photo):
 
 
 @app.get('/get_image/')
-async def get_photo(image):
+async def get_image(image):
    return FileResponse('./image/' + image)
    
 
@@ -57,10 +57,14 @@ async def get_applications(db: Session = Depends(get_db)):
    return result
 
 @app.get('/get_red_list/')
-async def get_applications(db: Session = Depends(get_db), skip: int = 0, limit: int = 5):
+async def get_red_list(db: Session = Depends(get_db), skip: int = 0, limit: int = 5):
    result = db.query(models.RedList).offset(skip).limit(limit).all()
    return result
 
+@app.get('/get_red_list/{red_list_id}')
+async def get_red_list_by_id(red_list_id: int, db: Session = Depends(get_db)):
+   result = db.query(models.RedList).filter(models.RedList.red_list_id == red_list_id).all()
+   return result
 
 @app.post('/create_application/')
 async def create_application(
