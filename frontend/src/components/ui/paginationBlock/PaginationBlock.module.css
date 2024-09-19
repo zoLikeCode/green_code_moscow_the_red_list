@@ -1,0 +1,33 @@
+.acitivty {
+  width: 45px;
+  height: 45px;
+  border: 1px solid rgb(114, 178, 114);
+  border-radius: 8.75px;
+  background: rgb(255, 255, 255);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(0, 0, 0);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 14px;
+  cursor: not-allowed;
+  margin-right: 10px;
+}
+
+.noActivity {
+  width: 45px;
+  height: 45px;
+  border: 1px solid rgb(240, 240, 242);
+  border-radius: 8.75px;
+  background: rgb(255, 255, 255);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(0, 0, 0);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 14px;
+  cursor: pointer;
+  margin-right: 10px;
+}

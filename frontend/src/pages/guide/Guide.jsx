@@ -1,44 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { SearchBlock } from '../../components/searchBlock/searchBlock';
 import css from './Guide.module.css';
 import { InfoAboutGuide } from '../../components/ui/infoAboutGuide/InfoAboutGuide';
 import { AnimalCard } from '../../components/animalCard/animalCard';
 import { Pagination } from '../../components/pagination/Pagination';
 import { useSearchAnimals } from '../../store';
+import { useShowCountOnPage } from '../../store';
+import { LoadAnimals } from '../../services/AnimalsAPI';
+import { Link } from 'react-router-dom';
+import { Loader } from './../../components/ui/loader/Loader';
 
 const Guide = () => {
-  const [infoAnimals, setInfoAnimals] = useState([
-    {
-      id: 1,
-      typeNameRU: 'Аааааа',
-    },
-    {
-      id: 2,
-      typeNameRU: 'Ббббб',
-    },
-    {
-      id: 3,
-      typeNameRU: 'Ввввв',
-    },
-    {
-      id: 4,
-      typeNameRU: 'Ггггг',
-    },
-    {
-      id: 5,
-      typeNameRU: 'Ддддд',
-    },
-    {
-      id: 6,
-      typeNameRU: 'Жжжжжж',
-    },
-    {
-      id: 7,
-      typeNameRU: 'Ииииии',
-    },
-  ]);
+  const [infoAnimals, setInfoAnimals] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const { searchAnimals, setSearchAnimals } = useSearchAnimals();
+  const { countShows, setCountShows } = useShowCountOnPage();
+
+  useEffect(() => {
+    LoadingAnimals(1, countShows);
+  }, [countShows]);
+
+  const LoadingAnimals = async (page, limit) => {
+    const response = await LoadAnimals(page, limit);
+    setInfoAnimals(response.data);
+    setIsLoading(false);
+  };
 
   return (
     <div>
@@ -46,17 +33,7 @@ const Guide = () => {
         <SearchBlock />
       </div>
       <InfoAboutGuide />
-      {/* <AnimalCard
-        typeNameRU={'Аномодон утонченный'}
-        typeNameUK={'Anomodon attenuatus (Hedw.) Hueb.'}
-        orderRU={'гипновые'}
-        orderEU={'Hypnales'}
-        familyRU={'аномодоновые'}
-        familyEU={'anomodontaceae'}
-        desc={
-          'Эпифит старых широколиственных лесов. В целом более южный вид, встречающийся в нашей зоне в основаниях стволов старых широколиственных деревьев и на свежем валеже, а также на выходах известняка.'
-        }
-      /> */}
+      {isLoading && <Loader />}
       {infoAnimals
         .filter((animal) => {
           return (
@@ -67,7 +44,17 @@ const Guide = () => {
         .map((anim, index) => {
           return (
             <div key={index} className={css.animalList}>
-              <AnimalCard typeNameRU={anim.typeNameRU} />
+              <AnimalCard
+                types={anim.chapter}
+                nameOnRus={anim.red_list_name}
+                nameOnLat={anim.red_list_name_lat}
+                family={anim.red_family}
+                order={anim.red_order}
+                detachment={anim.detachment}
+                desc={anim.distribution}
+                idImage={`http://go.itatmisis.ru:3000/get_image/?image=${anim.url_image.toLowerCase()}`}
+                infoArr={[anim.red_family, anim.red_status.slice(0, 20)]}
+              />
             </div>
           );
         })}

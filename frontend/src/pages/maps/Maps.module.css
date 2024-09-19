@@ -1,0 +1,56 @@
+.searchContainer {
+  display: flex;
+  align-items: center;
+  width: 1132px;
+  height: 63px;
+  border-radius: 29px;
+  background: rgb(237, 237, 237);
+}
+
+.searchForm {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 25px;
+  width: 348px;
+  height: 40px;
+  border: 1px solid rgb(240, 240, 242);
+  border-radius: 25px;
+  background: rgb(255, 255, 255);
+}
+
+.searchInput {
+  width: 285px;
+  height: 21px;
+  color: rgb(115, 115, 115);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 16px;
+  outline: transparent;
+  border: transparent;
+  margin-left: 10px;
+}
+
+.searchForm label {
+  margin: 8px;
+}
+
+.activeLink {
+  color: rgb(0, 0, 0);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 16px;
+}
+
+.typeText {
+  margin-bottom: 38px;
+  color: rgb(143, 143, 143);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 16px;
+  cursor: pointer;
+}
+
+.historyWatchTerritoryContainer {
+  margin-bottom: 50px;
+}

@@ -24,8 +24,46 @@
 
 .allObjectsContainer p {
   margin-bottom: 18px;
+  color: rgb(143, 143, 143);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 14px;
 }
 
 .allObjectsContainer {
   margin-bottom: 25px;
+}
+
+.typesContainer p {
+  margin-bottom: 13px;
+  color: rgb(143, 143, 143);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 14px;
+}
+
+.typesContainer {
+  margin-bottom: 17px;
+}
+
+.natureStatus p {
+  margin-bottom: 9px;
+}
+
+.natureStatus {
+  margin-bottom: 18px;
+}
+
+.natureStatus div {
+  display: flex;
+  flex-direction: row;
+}
+
+.typesPoint p {
+  margin-bottom: 8px;
+}
+
+.hrMapFilters {
+  border: 1px solid rgb(203, 203, 203);
+  margin-bottom: 13px;
 }

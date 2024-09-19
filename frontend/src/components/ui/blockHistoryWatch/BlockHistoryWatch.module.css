@@ -1,0 +1,52 @@
+.mainContainer {
+  width: 1132px;
+  height: 63px;
+  border-radius: 29px;
+  background: rgb(237, 237, 237);
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+}
+
+.mainContainer:last-child {
+  margin-bottom: 0;
+}
+
+.mainContainer p {
+  color: rgb(143, 143, 143);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 14px;
+}
+
+.mainContainer span {
+  color: rgb(0, 0, 0);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 14px;
+}
+
+.acceptContainer {
+  margin-left: 33px;
+  margin-right: 10px;
+}
+
+.acceptContainer span {
+  margin-left: 10px;
+}
+
+.date {
+  margin-left: 33px;
+}
+
+.date span {
+  margin-left: 15px;
+}
+
+.number {
+  margin-left: 37px;
+}
+
+.number span {
+  margin-left: 37px;
+}

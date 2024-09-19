@@ -50,6 +50,7 @@
 }
 
 .systematicsText {
+  color: rgb(114, 178, 114);
   font-weight: 500;
 }
 
@@ -59,6 +60,12 @@
   font-weight: 400;
   line-height: 14px;
   width: 761px;
+  height: 28px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  text-overflow: ellipsis;
   margin-top: 19px;
   margin-left: 34px;
 }

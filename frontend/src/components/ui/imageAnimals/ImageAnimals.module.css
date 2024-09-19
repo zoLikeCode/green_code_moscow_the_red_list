@@ -20,7 +20,7 @@
   width: 305px;
   height: 186px;
   border-radius: 44px;
-  content: url('./../../../assets/test2.jpg');
+  content: var(--image-url);
 }
 
 .nameType {

@@ -4,41 +4,51 @@ import { ImageAnimals } from '../ui/ImageAnimals/ImageAnimals';
 import { MoreInfoBlock } from '../ui/MoreInfoBlock/MoreInfoBlock';
 
 export const AnimalCard = ({
-  typeNameRU,
-  typeNameUK,
-  orderRU,
-  orderEU,
-  familyRU,
-  familyEU,
+  types,
+  nameOnRus,
+  nameOnLat,
+  order,
+  detachment,
+  family,
   desc,
+  idImage,
+  infoArr,
 }) => {
+  console.log(infoArr);
   return (
     <div className={css.mainContainer}>
-      <ImageAnimals name={'Моховидные'} />
+      <ImageAnimals name={types} stImage={idImage} />
       <div className={css.mainContent}>
         <div className={css.typeName}>
-          <b className={css.typeNameText}>{typeNameRU}</b>
-          <i className={css.typeNameText}>{typeNameUK}</i>
+          <b className={css.typeNameText}>
+            {nameOnRus.slice(0, 1).toUpperCase() +
+              nameOnRus.slice(1, nameOnRus.length).toLowerCase()}
+          </b>
+          <i className={css.typeNameText}>{nameOnLat}</i>
         </div>
         <div className={css.systematicsContainer}>
           <p className={css.systematics}>
-            <span className={css.systematicsText}>Порядок: </span>
-            <span className={css.systematicsLowerText}>{orderRU} </span>
-            <span className={css.systematicsCapText}>{`(${orderEU})`}</span>
+            {order.length === 0 ? (
+              <span className={css.systematicsText}>Порядок: </span>
+            ) : (
+              <span className={css.systematicsText}>Отряд: </span>
+            )}
+            {order.length === 0 ? (
+              <span className={css.systematicsLowerText}>{detachment} </span>
+            ) : (
+              <span className={css.systematicsLowerText}>{order} </span>
+            )}
           </p>
           <p className={css.systematics}>
             <span className={css.systematicsText}>Семейство: </span>
-            <span className={css.systematicsLowerText}>{familyRU} </span>
-            <span className={css.systematicsCapText}>{`(${familyEU})`} </span>
+            <span className={css.systematicsLowerText}>{family} </span>
           </p>
         </div>
         <p className={css.descText}>{desc}</p>
         <div className={css.MoreInfoContainer}>
-          <MoreInfoBlock info={'1 Под угрозой исчезновения'} />
-          <MoreInfoBlock info={'Моховидные'} />
-          <MoreInfoBlock info={'Царицыно'} />
-          <MoreInfoBlock info={'Нескучный сад'} />
-          <MoreInfoBlock info={'Останкино'} />
+          {infoArr.map((info) => {
+            return <MoreInfoBlock info={info} />;
+          })}
         </div>
       </div>
     </div>

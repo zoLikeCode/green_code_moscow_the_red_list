@@ -1,0 +1,110 @@
+.mainContainer {
+  width: 1132px;
+  height: 211px;
+  border-radius: 44px;
+  background: rgb(237, 237, 237);
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 25px;
+}
+
+.ryabchikContainer {
+  width: 300px;
+  height: 211px;
+}
+
+.ryabchikImage {
+  position: relative;
+  content: url('./../../../assets/RyabchikWatchOnMe.png');
+  bottom: 52px;
+  right: 90px;
+}
+
+.descContainer {
+  margin-left: 16px;
+  padding-top: 30px;
+}
+
+.mainText {
+  color: rgb(0, 0, 0);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.descText {
+  margin-top: 17px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 16px;
+  width: 693px;
+}
+
+.example {
+  width: 720px;
+  height: 20px;
+  margin-top: 16px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.example p {
+  color: rgb(0, 0, 0);
+  font-size: 12.68px;
+  font-weight: 400;
+  line-height: 13px;
+  margin-left: 12px;
+}
+
+.example span {
+  margin-left: 20px;
+}
+
+.example span:first-child {
+  margin-left: 0;
+}
+
+.thanksButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: transparent;
+  outline: transparent;
+  margin-top: 15px;
+  width: 166px;
+  height: 42px;
+  border-radius: 12px;
+  background: rgb(114, 178, 114);
+  cursor: pointer;
+  color: rgb(255, 255, 255);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 20px;
+  transition: 0.2s;
+}
+
+.thanksButton:hover {
+  scale: 1.01;
+}
+
+.closeIcon {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  background-color: transparent;
+  border: transparent;
+  outline: transparent;
+  cursor: pointer;
+  bottom: 180px;
+  left: 770px;
+}
+
+.loopHelpImage {
+  right: 235px;
+  top: 155px;
+  position: relative;
+  width: 168px;
+  height: 144px;
+  content: url('./../../../assets/LoopHeroV4.png');
+}

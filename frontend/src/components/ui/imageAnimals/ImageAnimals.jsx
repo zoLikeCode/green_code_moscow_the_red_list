@@ -1,17 +1,15 @@
 import React from 'react';
 import css from './ImageAnimals.module.css';
-import { BryophytaIcon } from '../../../assets/BryophytaIcon';
 
-export const ImageAnimals = ({ name }) => {
+export const ImageAnimals = ({ name, stImage }) => {
   return (
     <div className={css.mainContainer}>
       <div className={css.typeContainer}>
-        <span>
-          <BryophytaIcon />
-        </span>
+        <span></span>
         <p className={css.nameType}>{name}</p>
       </div>
-      <div className={css.image} />
+      <image src={stImage} />
+      <div className={css.image} style={{ '--image-url': `url(${stImage})` }} />
     </div>
   );
 };

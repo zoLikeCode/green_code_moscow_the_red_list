@@ -10,10 +10,15 @@ const Layout = () => {
   return (
     <>
       <Header />
-      <div className="mainCenter">
+      <div className='mainCenter'>
         <Outlet />
       </div>
-      {location.pathname === '/guide' && <Footer />}
+      <div className='lowerCenter'>
+        {location.pathname === '/guide' && <Footer />}
+        {location.pathname === '/monitoring' && <Footer />}
+        {location.pathname === '/monitoring/maps' && <Footer />}
+        {location.pathname === '/monitoring/processing' && <Footer />}
+      </div>
     </>
   );
 };
