@@ -1,26 +1,26 @@
-.navContainer {
-  margin-top: 24px;
-  margin-bottom: 16px;
+.mainContainer {
   width: 1132px;
+  display: flex;
+  flex-direction: column;
 }
 
-.navContent {
+.navigate {
+  padding: 0px 26px;
+  width: 333px;
+  height: 55px;
   display: flex;
   justify-content: space-between;
-  width: 282px;
-  margin-left: 27px;
-  z-index: 1000;
+  align-items: center;
 }
 
 hr {
-  margin-bottom: 41px;
   border: 1px solid rgb(114, 178, 114);
 }
 
 .activeLink {
   color: rgb(0, 0, 0);
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 16px;
 }
 
@@ -29,9 +29,5 @@ hr {
   font-size: 16px;
   font-weight: 400;
   line-height: 16px;
-  text-decoration: none !important;
-}
-
-.typesOnThisRegionContainer {
-  margin-bottom: 30px;
+  text-decoration: none;
 }

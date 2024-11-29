@@ -1,12 +1,13 @@
-FROM node:20
+FROM oven/bun:latest
 
 WORKDIR /app
 
-EXPOSE 80
+COPY package.json bun.lockb ./
 
-COPY package*.json ./
-RUN npm install
+RUN bun install
 
 COPY . .
 
-CMD ["npm", "run", "dev"]
+EXPOSE 80 
+
+CMD ["bun", "run", "dev"]
