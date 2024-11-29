@@ -1,6 +1,5 @@
 from datetime import datetime
 
-
 import shutil
 from pathlib import Path
 import uuid
@@ -17,12 +16,13 @@ from rosreestr_api.clients.rosreestr import PKKRosreestrAPIClient
 
 api_ppk_client = PKKRosreestrAPIClient()
 
-models.Base.metadata.create_all(engine)
 
 UPLOAD_DIR = Path('photo/')
 UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
 
 app = FastAPI()
+
+models.Base.metadata.create_all(engine)
 
 app.add_middleware(
     CORSMiddleware,
