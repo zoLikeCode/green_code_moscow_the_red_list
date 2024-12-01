@@ -1,0 +1,18 @@
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.filters {
+  width: 1132px;
+  margin-top: 21px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.mainContent {
+  margin-top: 36px;
+  display: flex;
+  flex-direction: column;
+}
