@@ -1,0 +1,12 @@
+#root {
+}
+
+.mainCenter {
+  display: flex;
+  justify-content: center;
+}
+
+.lowerCenter {
+  display: flex;
+  align-items: flex-end;
+}

@@ -1,0 +1,27 @@
+.noActiveContainer {
+  display: none;
+}
+
+.activeContainer {
+  margin-left: 537px;
+  margin-top: 48px;
+  position: absolute;
+  width: 162px;
+  border: 1px solid rgb(240, 240, 242);
+  border-radius: 8px;
+  background: rgb(255, 255, 255);
+}
+
+.mainContent {
+  padding: 12px 17px 12px 11px;
+}
+
+.mainContent li {
+  list-style-type: none;
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+.mainContent li:last-child {
+  margin-bottom: 0;
+}
